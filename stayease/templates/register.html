@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register — StayEase{% endblock %}
+
+{% block content %}
+<div class="container page-narrow">
+  <div class="auth-card card">
+    <h2>Create an account</h2>
+    <p class="auth-subtitle">Start booking your perfect stay</p>
+
+    <form id="register-form" class="auth-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="reg-username" name="username" required autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="reg-email" name="email" required autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number (optional)</label>
+        <input type="tel" id="reg-phone" name="phone_number" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="reg-password" name="password" required autocomplete="new-password" />
+      </div>
+      <div class="form-group">
+        <label for="password2">Confirm Password</label>
+        <input type="password" id="reg-password2" name="password2" required autocomplete="new-password" />
+      </div>
+      <div id="register-error" class="error-msg" style="display:none;"></div>
+      <div id="register-success" class="success-msg" style="display:none;"></div>
+      <button type="submit" class="btn-primary btn-full">Create Account</button>
+    </form>
+
+    <p class="auth-footer">Already have an account? <a href="/login/">Login here</a></p>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/auth.js' %}"></script>
+{% endblock %}

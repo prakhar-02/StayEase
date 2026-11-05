@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Payment — StayEase{% endblock %}
+
+{% block content %}
+<div class="container page-narrow">
+  <h1 class="page-title">Complete Payment</h1>
+
+  <div class="card" id="payment-summary">
+    <div class="loading">Loading...</div>
+  </div>
+
+  <div id="payment-section" style="display:none;">
+    <div class="card payment-detail-card">
+      <h3>Payment Details</h3>
+      <table class="summary-table">
+        <tr><td>Booking Reference</td><td id="pay-reference"></td></tr>
+        <tr><td>Hotel</td><td id="pay-hotel"></td></tr>
+        <tr><td>Check-in</td><td id="pay-checkin"></td></tr>
+        <tr><td>Check-out</td><td id="pay-checkout"></td></tr>
+        <tr class="total-row"><td><strong>Amount to Pay</strong></td><td id="pay-amount"></td></tr>
+      </table>
+    </div>
+
+    <div id="payment-error" class="error-msg" style="display:none;"></div>
+    <div id="payment-success" class="success-msg" style="display:none;"></div>
+
+    <div class="action-row" id="pay-action-row">
+      <button class="btn-primary btn-large" id="pay-btn">Pay Now with Razorpay</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/payment.js' %}"></script>
+{% endblock %}

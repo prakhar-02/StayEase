@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}StayEase — Find Your Perfect Stay{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-content">
+    <h1>Find Your Perfect Stay</h1>
+    <p>Search thousands of hotels across India</p>
+    <form class="search-form" id="search-form">
+      <div class="search-row">
+        <div class="search-field">
+          <label>City</label>
+          <input type="text" id="city" placeholder="e.g. Lucknow, Mumbai, Delhi" required />
+        </div>
+        <div class="search-field">
+          <label>Check-in</label>
+          <input type="date" id="check-in" required />
+        </div>
+        <div class="search-field">
+          <label>Check-out</label>
+          <input type="date" id="check-out" required />
+        </div>
+        <div class="search-field search-field-sm">
+          <label>Guests</label>
+          <input type="number" id="guests" value="1" min="1" max="10" required />
+        </div>
+        <button type="submit" class="btn-primary search-btn">Search</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="results-section" id="results-section" style="display:none;">
+  <div class="container">
+    <div id="results-header" class="results-header"></div>
+    <div id="results-grid" class="hotel-grid"></div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

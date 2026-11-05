@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Bookings — StayEase{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="page-title">My Bookings</h1>
+  <div id="bookings-list">
+    <div class="loading">Loading bookings...</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/history.js' %}"></script>
+{% endblock %}

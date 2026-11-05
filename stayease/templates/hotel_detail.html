@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Hotel Detail — StayEase{% endblock %}
+
+{% block content %}
+<div class="container" id="hotel-container">
+  <div class="loading">Loading hotel details...</div>
+</div>
+
+<template id="hotel-template">
+  <div class="hotel-detail-header">
+    <div class="hotel-detail-info">
+      <h1 id="hotel-name"></h1>
+      <p id="hotel-location" class="hotel-location"></p>
+      <div id="hotel-stars" class="stars"></div>
+      <p id="hotel-description" class="hotel-description"></p>
+    </div>
+    <img id="hotel-image" src="" alt="" class="hotel-detail-image" style="display:none;" />
+  </div>
+
+  <div class="amenities-section">
+    <h3>Amenities</h3>
+    <div id="hotel-amenities" class="amenities-list"></div>
+  </div>
+
+  <div class="rooms-section">
+    <h2>Available Rooms</h2>
+    <div id="rooms-grid" class="rooms-grid"></div>
+  </div>
+</template>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/hotel.js' %}"></script>
+{% endblock %}

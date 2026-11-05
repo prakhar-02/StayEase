@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}StayEase{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="/" class="nav-brand">StayEase</a>
+  <div class="nav-links" id="nav-links">
+    <a href="/" class="nav-link">Search Hotels</a>
+    <span id="nav-auth-links">
+      <a href="/login/" class="nav-link">Login</a>
+      <a href="/register/" class="nav-link btn-nav">Register</a>
+    </span>
+    <span id="nav-user-links" style="display:none;">
+      <a href="/bookings/history/" class="nav-link">My Bookings</a>
+      <span id="nav-username" class="nav-link"></span>
+      <a href="#" class="nav-link" onclick="logout()">Logout</a>
+    </span>
+  </div>
+</nav>
+
+<main class="main-content">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <p>&copy; 2025 StayEase. All rights reserved.</p>
+</footer>
+
+<script src="{% static 'js/utils.js' %}"></script>
+<script>
+  // Update navbar based on auth state
+  (function () {
+    const token = localStorage.getItem('access_token');
+    const username = localStorage.getItem('username');
+    if (token) {
+      document.getElementById('nav-auth-links').style.display = 'none';
+      document.getElementById('nav-user-links').style.display = 'inline-flex';
+      if (username) document.getElementById('nav-username').textContent = username;
+    }
+  })();
+
+  async function logout() {
+    const refresh = localStorage.getItem('refresh_token');
+    if (refresh) {
+      await fetch('/api/auth/logout/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ refresh }),
+      });
+    }
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('username');
+    window.location.href = '/login/';
+  }
+</script>
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

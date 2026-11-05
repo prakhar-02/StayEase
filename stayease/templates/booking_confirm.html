@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Confirm Booking — StayEase{% endblock %}
+
+{% block content %}
+<div class="container page-narrow">
+  <h1 class="page-title">Confirm Your Booking</h1>
+
+  <div class="booking-summary card" id="booking-summary">
+    <div class="loading">Loading booking details...</div>
+  </div>
+
+  <div id="booking-form-section" style="display:none;">
+    <div class="card booking-detail-card">
+      <h3>Booking Summary</h3>
+      <table class="summary-table">
+        <tr><td>Hotel</td><td id="sum-hotel"></td></tr>
+        <tr><td>Room</td><td id="sum-room"></td></tr>
+        <tr><td>Room Type</td><td id="sum-type"></td></tr>
+        <tr><td>Check-in</td><td id="sum-checkin"></td></tr>
+        <tr><td>Check-out</td><td id="sum-checkout"></td></tr>
+        <tr><td>Guests</td><td id="sum-guests"></td></tr>
+        <tr class="total-row"><td><strong>Total Amount</strong></td><td id="sum-total"></td></tr>
+      </table>
+    </div>
+
+    <div class="timer-banner" id="timer-banner">
+      <span>⏱ Complete payment within </span>
+      <span id="countdown" class="countdown">10:00</span>
+      <span> to confirm your booking</span>
+    </div>
+
+    <div id="booking-error" class="error-msg" style="display:none;"></div>
+
+    <div class="action-row">
+      <a href="/" class="btn-secondary">Cancel</a>
+      <button class="btn-primary" id="proceed-payment-btn">Proceed to Payment →</button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/booking.js' %}"></script>
+{% endblock %}
